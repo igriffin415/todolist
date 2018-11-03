@@ -42,6 +42,14 @@ public class History extends AppCompatActivity {
             }
         });
 
+        Button clear = (Button) findViewById(R.id.clear);
+        clear.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                list.removeAllViews();
+                HISTORY.clear();
+            }
+        });
+
     }
 
     private LinearLayout createCheckbox(final LinearLayout list, String text){
