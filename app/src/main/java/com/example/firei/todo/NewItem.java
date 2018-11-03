@@ -26,6 +26,15 @@ public class NewItem extends AppCompatActivity {
                 finish();
             }
         });
+
+        Button cancel = (Button) findViewById(R.id.cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                setResult(RESULT_CANCELED, intent);
+                finish();
+            }
+        });
     }
 
 }
