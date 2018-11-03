@@ -45,9 +45,12 @@ public class Todo extends AppCompatActivity {
         Button addNew = (Button) findViewById(R.id.add);
         addNew.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String text = itemName.getText().toString();
-                createCheckbox(list, text);
-                TODO.add(text);
+//                String text = itemName.getText().toString();
+//                createCheckbox(list, text);
+//                TODO.add(text);
+
+                Intent intent = new Intent(Todo.this, NewItem.class);
+                startActivityForResult(intent, ITEM_ACTION);
             }
         });
 
@@ -72,7 +75,11 @@ public class Todo extends AppCompatActivity {
         }
         if (requestCode == ITEM_ACTION) {
             if (resultCode == RESULT_OK) {
-                TODO = (ArrayList) data.getSerializableExtra("todo");
+                String text = data.getStringExtra("new item");
+                final LinearLayout list = (LinearLayout) findViewById(R.id.list);
+                TODO.add(text);
+                System.out.println("\t" + text);
+                createCheckbox(list, text);
             }
         }
     }
@@ -110,11 +117,10 @@ public class Todo extends AppCompatActivity {
             FileOutputStream outputStream = openFileOutput("TODO.dat", Context.MODE_PRIVATE);
             ObjectOutputStream out = new ObjectOutputStream(outputStream);
             out.writeObject((Serializable) TODO);
+            out.writeObject((Serializable) HISTORY);
             out.close();
             outputStream.close();
-            System.out.println("OUTPUT STREAM CLOSED");
         } catch (Exception e) {
-            System.out.println("BAD");
             e.printStackTrace();
         }
 
@@ -129,6 +135,7 @@ public class Todo extends AppCompatActivity {
             ObjectInputStream in = new ObjectInputStream(file);
             // Method for deserialization of object
             TODO = (ArrayList)in.readObject();
+            HISTORY = (ArrayList)in.readObject();
             in.close();
             file.close();
         } catch (Exception e) {
