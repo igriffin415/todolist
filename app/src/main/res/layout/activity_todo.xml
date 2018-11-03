@@ -33,6 +33,7 @@
                 android:layout_width="15dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="@color/colorButton"
                 android:text="+"
                 android:textSize="14sp" />
 
@@ -41,6 +42,7 @@
                 android:layout_width="82dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="@color/colorButton"
                 android:text="history"
                 android:textSize="14sp" />
         </LinearLayout>
