@@ -41,14 +41,10 @@ public class Todo extends AppCompatActivity {
         }
         setList();
 
-        final EditText itemName = (EditText) findViewById(R.id.nameItem);
+
         Button addNew = (Button) findViewById(R.id.add);
         addNew.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                String text = itemName.getText().toString();
-//                createCheckbox(list, text);
-//                TODO.add(text);
-
                 Intent intent = new Intent(Todo.this, NewItem.class);
                 startActivityForResult(intent, ITEM_ACTION);
             }

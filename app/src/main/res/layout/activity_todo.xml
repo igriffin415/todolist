@@ -42,23 +42,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
-        <EditText
-            android:id="@+id/nameItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="task"
-            android:textSize="12sp" />
-
         <Button
             android:id="@+id/add"
-            android:layout_width="44dp"
+            android:layout_width="15dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="+"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/history"
@@ -66,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="history"
-            android:textSize="11sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
