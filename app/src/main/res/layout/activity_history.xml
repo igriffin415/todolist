@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/colorButton"
-                android:text="RETURN"
+                android:text="TODO"
                 android:textSize="14sp" />
 
             <Button
