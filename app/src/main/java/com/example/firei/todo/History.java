@@ -48,29 +48,52 @@ public class History extends AppCompatActivity {
         restore.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 for(int i = 0; i <list.getChildCount(); i++){
-                    System.out.println(list.getChildAt(i).getClass().toString());
                     try{
                         CheckBox cb = (CheckBox) list.getChildAt(i);
                         if(cb.isChecked()){
-                            list.removeView((View)cb);
-                            HISTORY.remove(((CheckBox) v).getText().toString());
-                            TODO.add(((CheckBox) v).getText().toString());
+                            String text = cb.getText().toString();
+                            HISTORY.remove(text);
+                            TODO.add(text);
                         }
                     }catch(Exception e){
                         System.out.println(":^(");
+                        System.out.println(e.getMessage());
                     }
 
                 }
+                setLayout();
             }
         });
 
         Button clear = (Button) findViewById(R.id.clear);
         clear.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                list.removeAllViews();
-                HISTORY.clear();
+                for(int i = 0; i <list.getChildCount(); i++){
+                    try{
+                        CheckBox cb = (CheckBox) list.getChildAt(i);
+                        if(cb.isChecked()){
+                            String text = cb.getText().toString();
+                            HISTORY.remove(text);
+                        }
+                    }catch(Exception e){
+                        System.out.println(":^(");
+                        System.out.println(e.getMessage());
+                    }
+
+                }
+                setLayout();
             }
         });
+
+    }
+
+    private void setLayout(){
+        LinearLayout list = (LinearLayout) findViewById(R.id.historyList);
+        list.removeAllViews();
+        for(int i = 0; i < HISTORY.size(); i++){
+            String text = HISTORY.get(i);
+            createCheckbox(list, text);
+        }
 
     }
 

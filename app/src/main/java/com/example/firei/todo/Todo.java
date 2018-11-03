@@ -59,6 +59,27 @@ public class Todo extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+
+        Button complete = (Button) findViewById(R.id.complete);
+        complete.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                for(int i = 0; i <list.getChildCount(); i++){
+                    try{
+                        CheckBox cb = (CheckBox) list.getChildAt(i);
+                        if(cb.isChecked()){
+                            String text = cb.getText().toString();
+                            TODO.remove(text);
+                            HISTORY.add(text);
+                        }
+                    }catch(Exception e){
+                        System.out.println(":^(");
+                        System.out.println(e.getMessage());
+                    }
+
+                }
+                setList();
+            }
+        });
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -84,16 +105,16 @@ public class Todo extends AppCompatActivity {
         CheckBox ch = new CheckBox(Todo.this);
         ch.setText(text);
         list.addView(ch);
-        ch.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if(HISTORY.size() == 10){
-                    HISTORY.remove(0);
-                }
-                HISTORY.add(((CheckBox) v).getText().toString());
-                TODO.remove(((CheckBox) v).getText().toString());
-                list.removeView(v);
-            }
-        });
+//        ch.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                if(HISTORY.size() == 10){
+//                    HISTORY.remove(0);
+//                }
+//                HISTORY.add(((CheckBox) v).getText().toString());
+//                TODO.remove(((CheckBox) v).getText().toString());
+//                list.removeView(v);
+//            }
+//        });
     }
 
     private void setList(){
