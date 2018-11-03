@@ -3,7 +3,9 @@ package com.example.firei.todo;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -42,6 +44,26 @@ public class History extends AppCompatActivity {
             }
         });
 
+        Button restore = (Button) findViewById(R.id.restore);
+        restore.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                for(int i = 0; i <list.getChildCount(); i++){
+                    System.out.println(list.getChildAt(i).getClass().toString());
+                    try{
+                        CheckBox cb = (CheckBox) list.getChildAt(i);
+                        if(cb.isChecked()){
+                            list.removeView((View)cb);
+                            HISTORY.remove(((CheckBox) v).getText().toString());
+                            TODO.add(((CheckBox) v).getText().toString());
+                        }
+                    }catch(Exception e){
+                        System.out.println(":^(");
+                    }
+
+                }
+            }
+        });
+
         Button clear = (Button) findViewById(R.id.clear);
         clear.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -56,13 +78,13 @@ public class History extends AppCompatActivity {
         CheckBox ch = new CheckBox(History.this);
         ch.setText(text);
         list.addView(ch);
-        ch.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                HISTORY.remove(((CheckBox) v).getText().toString());
-                TODO.add(((CheckBox) v).getText().toString());
-                list.removeView(v);
-            }
-        });
+//        ch.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                HISTORY.remove(((CheckBox) v).getText().toString());
+////                TODO.add(((CheckBox) v).getText().toString());
+////                list.removeView(v);
+//            }
+//        });
         return list;
     }
 }
