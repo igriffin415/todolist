@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -80,6 +81,10 @@ public class Todo extends AppCompatActivity {
                 setList();
             }
         });
+
+        TextView t = (TextView) findViewById(R.id.textView);
+        t.setBackgroundColor(0xfdafa8);
+        list.addView(t);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
